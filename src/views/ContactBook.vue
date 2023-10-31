@@ -10,7 +10,7 @@
             </h4>
             <ContactList
                 v-if="filteredContactsCount > 0"
-                :contacts="filteredContact"
+                :contacts="filteredContacts"
                 v-model:activeIndex="activeIndex"
             />
             <p v-else>Không có liên hệ nào.</p>
@@ -19,7 +19,7 @@
                 <button class="btn btn-sm btn-primary" @click="$event => refreshList()">
                     <i class="fas fa-redo"></i>Làm mới
                 </button>
-                <button class="btn btn-sm btn-succes" @click="goToAddContact">
+                <button class="btn btn-sm btn-success" @click="goToAddContact">
                     <i class="fas fa-plus"></i>Thêm mới
                 </button>
                 <button class="btn btn-sm btn-danger" @click="removeAllContacts">
@@ -33,7 +33,17 @@
                     Chi tiết Liên hệ
                     <i class="fas fa-address-card"></i>
                 </h4>
-                <ContactCard: contact="activeContact"/>
+                <ContactCard :contact="activeContact"/>
+                <router-link
+                :to="{
+                    name: 'contact.edit',
+                    params: { id: activeContact._id },
+                }"
+                >
+                <span class="mt-2 badge badge-warning">
+                    <i class="fas fa-edit"></i>Hiệu chỉnh
+                </span>
+            </router-link>
             </div>
         </div>
     </div>
@@ -77,7 +87,7 @@ export default {
         filteredContacts() {
             if(!this.searchText) return this.contacts;
             return this.contacts.filter((_contact, index) =>
-                this.contactStrings[index].includes(this.searchText)
+                this.contactStrings[index].toLowerCase().includes(this.searchText)
 
             );
         },

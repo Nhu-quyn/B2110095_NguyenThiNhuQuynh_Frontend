@@ -19,7 +19,7 @@ export default {
         <div class="p-1">
             <strong>Địa chỉ:</strong> 
             {{ contact.address }}
-
+            
         </div>
         <div class="p-1">
             <strong>Điện thoại:</strong>

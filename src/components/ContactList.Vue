@@ -7,7 +7,7 @@ export default {
     emits: ["update:activeIndex"],
     methods: {
         updateActiveIndex(index) {
-            this.$emit("update:activeIndex",index);
+            this.$emit("update:activeIndex", index);
         }
     }
 };
@@ -19,7 +19,7 @@ export default {
             class="list-group-item"
             v-for="(contact, index) in contacts"
             :key="contact._id"
-            :class="{ active: index === activeIndex }"
+            :class="{ active: index === activeIndex}"
             @click="$event => updateActiveIndex(index)"
         >
             {{  contact.name }}

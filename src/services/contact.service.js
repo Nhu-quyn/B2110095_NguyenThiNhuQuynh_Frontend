@@ -1,4 +1,4 @@
-import createApiClient from "./api/services";
+import createApiClient from "./api.services";
 
 class ContactService {
     constructor(baseUrl = "/api/contacts"){
